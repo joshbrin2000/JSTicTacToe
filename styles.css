@@ -16,11 +16,18 @@ body > h1{
 }
 
 .container{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 50vh;
+    border: 2px solid blue;
+}
+
+.temp{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50vh;
-    border: 2px solid red;
+    padding-top: 50px
 }
 
 .board-box{
@@ -32,4 +39,11 @@ body > h1{
 
 .section{
     border: 2px solid red;
+}
+
+.button-section{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 25px;
 }
