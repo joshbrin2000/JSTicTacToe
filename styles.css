@@ -20,26 +20,34 @@ body > h1{
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
     height: 50vh;
-    border: 2px solid blue;
 }
 
 .temp{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 50px
+    padding-top: 50px;
 }
 
 .board-box{
     display: grid;
     grid-template-columns: repeat(3, 100px);
     grid-template-rows: repeat(3, 100px);
-    border: 2px solid red;
+    border: 2px solid black;
 }
 
 .section{
-    border: 2px solid red;
+    border: 2px solid black;
 }
+
+.section:hover{
+    background-color: #c5c3c6;
+}
+
+.section:active{
+    background-color: grey;
+}
+
 
 .button-section{
     display: flex;
