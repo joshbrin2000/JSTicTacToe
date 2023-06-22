@@ -38,10 +38,20 @@ body > h1{
 }
 
 .section{
-    border: 2px solid red;
+    border: 2px solid black;
+    justify-items: center;
 }
 
-.button-section{
+.section:hover{
+    background-color: #c5c3c6;
+}
+
+.section:active{
+    background-color: grey;
+}
+
+
+.reset-section{
     display: flex;
     justify-content: center;
     align-items: flex-start;
