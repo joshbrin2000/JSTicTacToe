@@ -1,18 +1,34 @@
 const gameBoard = (() => {
     let boardArray = [];
     let turn = null;
+
+    _initTurn = function(){
+        turn = (Math.floor(Math.random() * 2) === 0) ? "C" : "P";
+    }
+
+    _alterTurn = function(){
+        turn = (turn === "C") ? "P" : "C";
+    }
+
     return {
         init: function () {
             boardArray = [];
             for (let i = 0; i < 9; i++){
                 boardArray.push(" ");
             }
-            turn = gameBoard.goesFirst();
+            gameBoard.initTurn();
         },
 
-        goesFirst: function(){
-            let result = Math.floor(Math.random() * 2);
-            return result;
+        initTurn: function(){
+            _initTurn();
+        },
+
+        alterTurn: function(){
+            _alterTurn();
+        },
+
+        getTurn: function(){
+            return turn;
         },
 
         setToken: function (tok, ind) {
@@ -36,11 +52,25 @@ const gameBoard = (() => {
 })();
 
 function updateBtn(btn){
-    btn.innerHTML = "clicked";
-    console.log(gameBoard.getTurn());
+    switch(gameBoard.getTurn()){
+        case "C":
+            btn.innerHTML = "X";
+            btn.disabled = true;
+            btn.style.backgroundColor = "#faaa23";
+            gameBoard.alterTurn();
+            break;
+        case "P":
+            btn.innerHTML = "O";
+            btn.disabled = true;
+            btn.style.backgroundColor = "#2ab7e2";
+            gameBoard.alterTurn();
+            break;
+        default:
+            break;
+    }
 }
 
-const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('.section');
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         updateBtn(button);
