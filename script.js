@@ -1,5 +1,5 @@
 const gameBoard = (() => {
-    let boardArray = [];
+    let boardArray = new Map();
     let turn = null;
 
     _initTurn = function(){
@@ -12,9 +12,9 @@ const gameBoard = (() => {
 
     return {
         init: function () {
-            boardArray = [];
+            boardArray.clear();
             for (let i = 0; i < 9; i++){
-                boardArray.push(" ");
+                boardArray.set(+i, " ");
             }
             gameBoard.initTurn();
         },
@@ -31,18 +31,19 @@ const gameBoard = (() => {
             return turn;
         },
 
-        setToken: function (tok, ind) {
-            boardArray[ind] = tok;
+        setToken: function (ind, tok) {
+            boardArray.set(+ind, tok);
         },
 
-        getTokens: function (tok) {
-            let indIndex = [];
-            for (let i = 0; i < 9; i++){
-                if (boardArray[i] === tok){
-                    indIndex.push(i);
-                }
-            }
-            return indIndex;
+        calculateWin: function (tok) {
+            return ((boardArray.get(+1) === tok && boardArray.get(+2) === tok && boardArray.get(+3) === tok) ||
+            (boardArray.get(+4) === tok && boardArray.get(+5) === tok && boardArray.get(+6) === tok) ||
+            (boardArray.get(+7) === tok && boardArray.get(+8) === tok && boardArray.get(+9) === tok) ||
+            (boardArray.get(+1) === tok && boardArray.get(+4) === tok && boardArray.get(+7) === tok) ||
+            (boardArray.get(+2) === tok && boardArray.get(+5) === tok && boardArray.get(+8) === tok) ||
+            (boardArray.get(+3) === tok && boardArray.get(+6) === tok && boardArray.get(+9) === tok) ||
+            (boardArray.get(+1) === tok && boardArray.get(+5) === tok && boardArray.get(+9) === tok) ||
+            (boardArray.get(+3) === tok && boardArray.get(+5) === tok && boardArray.get(+7) === tok));
         },
 
         getTurn: function(){
@@ -55,16 +56,18 @@ function updateBtn(btn){
     switch(gameBoard.getTurn()){
         case "C":
             btn.innerHTML = "X";
-            gameBoard.setToken("X", btn.value);
+            gameBoard.setToken(btn.value, "X");
             btn.disabled = true;
             btn.style.backgroundColor = "#faaa23";
+            console.log(gameBoard.calculateWin("X"));
             gameBoard.alterTurn();
             break;
         case "P":
             btn.innerHTML = "O";
-            gameBoard.setToken("O", btn.value);
+            gameBoard.setToken(btn.value, "O");
             btn.disabled = true;
             btn.style.backgroundColor = "#2ab7e2";
+            console.log(gameBoard.calculateWin("O"));
             gameBoard.alterTurn();
             break;
         default:
