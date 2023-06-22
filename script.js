@@ -55,12 +55,14 @@ function updateBtn(btn){
     switch(gameBoard.getTurn()){
         case "C":
             btn.innerHTML = "X";
+            gameBoard.setToken("X", btn.value);
             btn.disabled = true;
             btn.style.backgroundColor = "#faaa23";
             gameBoard.alterTurn();
             break;
         case "P":
             btn.innerHTML = "O";
+            gameBoard.setToken("O", btn.value);
             btn.disabled = true;
             btn.style.backgroundColor = "#2ab7e2";
             gameBoard.alterTurn();
