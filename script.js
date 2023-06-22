@@ -68,6 +68,15 @@ function disableBtns(){
     }
 }
 
+function winDiv(winner){
+    let winCard = document.createElement('div');
+    winCard.className = 'win-div';
+    let winMessage = document.createElement('p');
+    winMessage.textContent = `Winner: ${winner} has won the game!`;
+    winCard.appendChild(winMessage);
+    document.getElementsByClassName("container")[0].appendChild(winCard);
+}
+
 function updateBtn(btn){
     if (!gameBoard.getWinFound()){
         switch(gameBoard.getTurn()){
@@ -79,6 +88,7 @@ function updateBtn(btn){
                 if (gameBoard.calculateWin("X")){
                     console.log("X Wins!");
                     disableBtns();
+                    winDiv("X");
                     //add html addition stating winner
                 }
                 gameBoard.alterTurn();
@@ -91,6 +101,7 @@ function updateBtn(btn){
                 if (gameBoard.calculateWin("O")){
                     console.log("O Wins!");
                     disableBtns();
+                    winDiv("O");
                     //add html addition stating winner
                 }
                 gameBoard.alterTurn();
