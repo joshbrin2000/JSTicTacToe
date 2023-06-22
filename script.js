@@ -60,6 +60,14 @@ const gameBoard = (() => {
     }
 })();
 
+function disableBtns(){
+    const buttons = document.querySelectorAll('.section');
+    for (const button of buttons){
+        button.disabled = true;
+        button.style.pointerEvents = "none";
+    }
+}
+
 function updateBtn(btn){
     if (!gameBoard.getWinFound()){
         switch(gameBoard.getTurn()){
@@ -69,7 +77,9 @@ function updateBtn(btn){
                 btn.disabled = true;
                 btn.style.backgroundColor = "#faaa23";
                 if (gameBoard.calculateWin("X")){
-                    console.log("X Wins!")
+                    console.log("X Wins!");
+                    disableBtns();
+                    //add html addition stating winner
                 }
                 gameBoard.alterTurn();
                 break;
@@ -79,18 +89,14 @@ function updateBtn(btn){
                 btn.disabled = true;
                 btn.style.backgroundColor = "#2ab7e2";
                 if (gameBoard.calculateWin("O")){
-                    console.log("O Wins!")
+                    console.log("O Wins!");
+                    disableBtns();
+                    //add html addition stating winner
                 }
                 gameBoard.alterTurn();
                 break;
             default:
                 break;
-        }
-    }
-    else{
-        const buttons = document.querySelectorAll('.section');
-        for (const button of buttons){
-            button.disabled = true;
         }
     }
 }
