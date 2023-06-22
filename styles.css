@@ -60,3 +60,11 @@ body > h1{
     align-items: flex-start;
     padding-top: 25px;
 }
+
+.win-div{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    padding-top: 10vh;
+    font-size: 100px;
+}
