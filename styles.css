@@ -38,6 +38,7 @@ body > h1{
 
 .section{
     border: 2px solid black;
+    justify-items: center;
 }
 
 .section:hover{
@@ -49,7 +50,7 @@ body > h1{
 }
 
 
-.button-section{
+.reset-section{
     display: flex;
     justify-content: center;
     align-items: flex-start;
